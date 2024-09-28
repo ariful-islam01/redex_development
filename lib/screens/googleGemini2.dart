@@ -13,7 +13,7 @@ class _ChatScreen2State extends State<ChatScreen2> {
   TextEditingController _userInput = TextEditingController();
   bool _isLoading = false;
 
-  static const apiKey = "AIzaSyBuUwr3IPpuz_znqFJ_B4lypiv6hsTScLo";  // Replace with your API key
+  static const apiKey = "your api key";  // Replace with your API key
   final model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
   final List<Message> _messages = [];
 
