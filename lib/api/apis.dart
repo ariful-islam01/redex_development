@@ -100,39 +100,6 @@ class APIs {
     }
   }
 
-  // for sending ChatGPT response
-  static Future<String?> getChatGPTResponse(String prompt) async {
-    try {
-      const apiKey = 'sk-xGXPgwbglIM1VSuZK_zHcdDuCMZFHPj0BmOwsupfM9T3BlbkFJBz9z3ldA6HptFIRnnUmVXJAvAFO7l5m6-eRBEgdzoA'; // Replace with your actual OpenAI API key
-      const apiUrl = 'https://api.openai.com/v1/completions';
-
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $apiKey',
-        },
-        body: jsonEncode({
-          'model': 'gpt-3.5-turbo', // Using GPT-3.5 or GPT-4 model
-          'prompt': prompt,
-          'max_tokens': 150, // Adjust token limit as needed
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> responseBody = jsonDecode(response.body);
-        final String reply = responseBody['choices'][0]['text'].trim();
-        log('ChatGPT Response: $reply');
-        return reply;
-      } else {
-        log('Failed to get ChatGPT response: ${response.statusCode}');
-        return null;
-      }
-    } catch (e) {
-      log('Error in getChatGPTResponse: $e');
-      return null;
-    }
-  }
 
 
   // for checking if user exists or not?
